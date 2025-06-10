@@ -1,14 +1,20 @@
+
+'use client';
+
 import { PlaceholderContent } from '@/components/shared/PlaceholderContent';
 import { CalendarDays } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar'; // Shadcn Calendar
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 export default function AppointmentsPage() {
-  // Placeholder for selected date state
-  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const [date, setDate] = useState<Date | undefined>(undefined);
+
+  useEffect(() => {
+    setDate(new Date());
+  }, []);
 
 
   return (
@@ -32,7 +38,7 @@ export default function AppointmentsPage() {
         </Card>
         <Card className="md:col-span-2">
           <CardHeader>
-            <CardTitle>Upcoming Appointments for {date?.toLocaleDateString()}</CardTitle>
+            <CardTitle>Upcoming Appointments for {date ? date.toLocaleDateString() : '...'}</CardTitle>
           </CardHeader>
           <CardContent>
             {/* Placeholder for appointments list */}
