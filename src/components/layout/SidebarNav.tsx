@@ -74,34 +74,30 @@ export default function SidebarNav() {
               <SidebarMenuSub>
                 {item.subItems.map((subItem) => (
                   <SidebarMenuSubItem key={subItem.href}>
-                    <Link href={subItem.href} passHref legacyBehavior>
-                      <SidebarMenuSubButton
-                        asChild
-                        isActive={pathname === subItem.href || pathname.startsWith(subItem.href + '/')}
-                      >
-                        <a>
-                          {subItem.icon && <subItem.icon size={16} className="mr-2" />}
-                          <span>{subItem.label}</span>
-                        </a>
-                      </SidebarMenuSubButton>
-                    </Link>
+                    <SidebarMenuSubButton
+                      asChild
+                      isActive={pathname === subItem.href || pathname.startsWith(subItem.href + '/')}
+                    >
+                      <Link href={subItem.href}>
+                        {subItem.icon && <subItem.icon size={16} className="mr-2" />}
+                        <span>{subItem.label}</span>
+                      </Link>
+                    </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                 ))}
               </SidebarMenuSub>
             </>
           ) : (
-            <Link href={item.href!} passHref legacyBehavior>
-              <SidebarMenuButton 
-                asChild 
-                isActive={pathname === item.href || pathname.startsWith(item.href! + '/') }
-                tooltip={item.label}
-              >
-                <a>
-                  <item.icon size={18} />
-                  <span>{item.label}</span>
-                </a>
-              </SidebarMenuButton>
-            </Link>
+            <SidebarMenuButton 
+              asChild 
+              isActive={pathname === item.href || pathname.startsWith(item.href! + '/') }
+              tooltip={item.label}
+            >
+              <Link href={item.href!}>
+                <item.icon size={18} />
+                <span>{item.label}</span>
+              </Link>
+            </SidebarMenuButton>
           )}
         </SidebarMenuItem>
       ))}
